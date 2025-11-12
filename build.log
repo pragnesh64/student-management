@@ -1,0 +1,32 @@
+
+> student-management@0.1.0 build /Users/pragnesh/Downloads/Code/Nextjs_Project/student-management
+> next build
+
+   ▲ Next.js 14.1.0
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/5) ...
+   Generating static pages (1/5) 
+   Generating static pages (2/5) 
+   Generating static pages (3/5) 
+ ✓ Generating static pages (5/5) 
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    138 B          84.4 kB
+├ ○ /_not-found                          883 B          85.1 kB
+└ λ /students                            85 kB           181 kB
++ First Load JS shared by all            84.2 kB
+  ├ chunks/452-bceddc23dd5df322.js       28.9 kB
+  ├ chunks/cfeffc86-af79eb90e3d928f0.js  53.4 kB
+  └ other shared chunks (total)          1.94 kB
+
+
+○  (Static)   prerendered as static content
+λ  (Dynamic)  server-rendered on demand using Node.js
+

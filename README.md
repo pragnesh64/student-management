@@ -234,6 +234,46 @@ pnpm build
 pnpm start
 ```
 
+## Deployment
+
+### Deploy to Vercel
+
+The easiest way to deploy this application is using [Vercel](https://vercel.com):
+
+1. **Push your code to GitHub** (already done!)
+
+2. **Import to Vercel:**
+   - Go to [vercel.com](https://vercel.com)
+   - Click "New Project"
+   - Import your `student-management` repository
+
+3. **Configure Environment Variables:**
+   In the Vercel project settings, add these environment variables:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your-project-url.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+   ```
+
+4. **Deploy:**
+   - Click "Deploy"
+   - Vercel will automatically build and deploy your app
+   - You'll get a production URL (e.g., `your-app.vercel.app`)
+
+5. **Automatic Deployments:**
+   - Every push to `main` branch will trigger a new deployment
+   - Pull requests get preview deployments
+
+**Note:** Make sure you've run the database schema in Supabase before deploying!
+
+### Other Deployment Options
+
+This is a standard Next.js app and can be deployed to:
+- **AWS Amplify**
+- **Netlify**
+- **Railway**
+- **DigitalOcean App Platform**
+- **Self-hosted** with Docker
+
 ## Customization
 
 ### Changing the Theme

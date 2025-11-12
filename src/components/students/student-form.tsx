@@ -13,6 +13,7 @@ import { useState } from 'react'
 
 type Student = Database['public']['Tables']['students']['Row']
 type StudentInsert = Database['public']['Tables']['students']['Insert']
+type StudentUpdate = Database['public']['Tables']['students']['Update']
 
 const studentSchema = z.object({
   first_name: z.string().min(1, 'First name is required').max(100),
@@ -94,24 +95,30 @@ export default function StudentForm({ student, onSave, onCancel }: StudentFormPr
     setIsSubmitting(true)
     const supabase = createClient()
 
-    const studentData: StudentInsert = {
-      ...data,
-      phone: data.phone || null,
-      major: data.major || null,
-      gpa: data.gpa ? parseFloat(data.gpa) : null,
-      address: data.address || null,
-      city: data.city || null,
-      state: data.state || null,
-      zip_code: data.zip_code || null,
-      emergency_contact_name: data.emergency_contact_name || null,
-      emergency_contact_phone: data.emergency_contact_phone || null,
-    }
-
     if (student) {
       // Update existing student
+      const updateData: StudentUpdate = {
+        first_name: data.first_name,
+        last_name: data.last_name,
+        email: data.email,
+        phone: data.phone || null,
+        date_of_birth: data.date_of_birth,
+        enrollment_date: data.enrollment_date,
+        grade_level: data.grade_level,
+        major: data.major || null,
+        gpa: data.gpa ? parseFloat(data.gpa) : null,
+        address: data.address || null,
+        city: data.city || null,
+        state: data.state || null,
+        zip_code: data.zip_code || null,
+        emergency_contact_name: data.emergency_contact_name || null,
+        emergency_contact_phone: data.emergency_contact_phone || null,
+        status: data.status,
+      }
+
       const { data: updatedStudent, error } = await supabase
         .from('students')
-        .update(studentData)
+        .update(updateData)
         .eq('id', student.id)
         .select()
         .single()
@@ -133,9 +140,28 @@ export default function StudentForm({ student, onSave, onCancel }: StudentFormPr
       onSave(updatedStudent)
     } else {
       // Create new student
+      const insertData: StudentInsert = {
+        first_name: data.first_name,
+        last_name: data.last_name,
+        email: data.email,
+        phone: data.phone || null,
+        date_of_birth: data.date_of_birth,
+        enrollment_date: data.enrollment_date,
+        grade_level: data.grade_level,
+        major: data.major || null,
+        gpa: data.gpa ? parseFloat(data.gpa) : null,
+        address: data.address || null,
+        city: data.city || null,
+        state: data.state || null,
+        zip_code: data.zip_code || null,
+        emergency_contact_name: data.emergency_contact_name || null,
+        emergency_contact_phone: data.emergency_contact_phone || null,
+        status: data.status,
+      }
+
       const { data: newStudent, error } = await supabase
         .from('students')
-        .insert(studentData)
+        .insert(insertData)
         .select()
         .single()
 
